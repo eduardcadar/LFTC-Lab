@@ -11,13 +11,14 @@ namespace LFTC_Lab
 
         public static List<string> Keywords = new()
         {
-            "int", "string", "struct", "if", "else", "while",
+            "double", "string", "struct", "if", "else", "while",
             "Console.ReadLine", "Console.WriteLine"
         };
 
         public static List<string> Operators = new()
         {
-            "+", "-", "*", "/", "<", ">", "<=", ">=", "==", "!=", "||", "&&"
+            "+", "-", "*", "/", "<", ">", "=",
+            "<=", ">=", "==", "!=", "||", "&&"
         };
 
         public static bool IsDelimiter(this char c)
@@ -52,7 +53,7 @@ namespace LFTC_Lab
 
         public static bool IsConstNumber(this string text)
         {
-            return Regex.IsMatch(text, @"^[+-]?([1-9]?[0-9]*)(\.[0-9]+)?$");
+            return Regex.IsMatch(text, @"^[+-]?(0|([1-9][0-9]*))(\.[0-9]+)?$");
         }
 
         public static bool IsConstText(this string text)

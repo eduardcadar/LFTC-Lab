@@ -2,12 +2,12 @@
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            var code = @"int a, b, a3, =<;
+            var code = @"double a, b, a3, =<, 3., 0.2, 3.5, -4.3, -0.2, -2, -0;
 string c;
 struct Point {
-    int x, y;
+    double x, y;
 }
 a = 2 + 3;
 Console.ReadLine(c);
@@ -21,8 +21,8 @@ while (a > 0) {
     Console.WriteLine(a + ""\n"");
     a = a - 1;
 }";
-
             Console.WriteLine(code);
+            Console.WriteLine();
             var atoms = AnalizorLexical.SeparateAtoms(code);
             foreach (var atom in atoms)
                 Console.WriteLine(atom);
@@ -39,7 +39,7 @@ while (a > 0) {
 
         public static void Cmmdc()
         {
-            int a, b, cmmdc;
+            double a, b, cmmdc;
             Console.Write("a = ");
             a = Convert.ToInt32(Console.ReadLine());
             Console.Write("b = ");
@@ -60,7 +60,7 @@ while (a > 0) {
 
         public static void Suma()
         {
-            int a, n, s;
+            double a, n, s;
             Console.Write("n = ");
             n = Convert.ToInt32(Console.ReadLine());
             s = 0;
@@ -74,7 +74,7 @@ while (a > 0) {
 
         public static void FaraErori()
         {
-            int a = 15;
+            double a = 15;
             Console.WriteLine(a);
             a--;
         }
