@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "LFTC-Lab/1.0.0": {
+        "runtime": {
+          "LFTC-Lab.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "LFTC-Lab/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
