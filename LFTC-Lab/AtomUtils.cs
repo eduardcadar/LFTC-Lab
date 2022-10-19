@@ -51,6 +51,11 @@ namespace LFTC_Lab
             return Regex.IsMatch(text, @"^[a-zA-Z]+$");
         }
 
+        public static bool IsConst(this string text)
+        {
+            return text.IsConstNumber() || text.IsConstText();
+        }
+
         public static bool IsConstNumber(this string text)
         {
             return Regex.IsMatch(text, @"^[+-]?(0|([1-9][0-9]*))(\.[0-9]+)?$");

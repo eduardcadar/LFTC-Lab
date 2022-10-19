@@ -2,7 +2,6 @@
 {
     public enum AtomType
     {
-        KEYWORD, DELIMITER, CONSTNUMBER, CONSTTEXT, ID, OPERATOR,
-        INVALID
+        KEYWORD, DELIMITER, CONST, ID, OPERATOR
     }
 }
