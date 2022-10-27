@@ -9,5 +9,7 @@
         {
             SymbolID = -1;
         }
+
+        public override string ToString() => TypeID + " " + SymbolID;
     }
 }

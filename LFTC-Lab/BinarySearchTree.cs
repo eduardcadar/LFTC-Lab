@@ -1,4 +1,6 @@
-﻿namespace LFTC_Lab
+﻿using System.Text;
+
+namespace LFTC_Lab
 {
     public class Node
     {
@@ -9,10 +11,7 @@
             Elem = elem;
         }
 
-        public override string ToString()
-        {
-            return Elem;
-        }
+        public override string ToString() => Elem;
     }
 
     public class BinarySearchTree
@@ -28,10 +27,7 @@
             Nodes = new Node[Size];
         }
 
-        public Node Get(int index)
-        {
-            return Nodes[index];
-        }
+        public Node Get(int index) => Nodes[index];
 
         public int GetIndex(string elem)
         {
@@ -79,6 +75,16 @@
         public Node[] GetAllNodes()
         {
             return Nodes;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new();
+            if (Nodes != null)
+                for (int i = 0; i < Size; i++)
+                    if (Nodes[i] != null)
+                        sb.Append(i + " " + Nodes[i] + Environment.NewLine);
+            return sb.ToString();
         }
     }
 }

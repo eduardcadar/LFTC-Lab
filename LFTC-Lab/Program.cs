@@ -1,11 +1,13 @@
 ﻿namespace LFTC_Lab
 {
-    internal class Program
+    public class Program
     {
-        static void Main()
+        public static void Main()
         {
-            string filePath = @"C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\inputCode.txt";
-            string[] code = File.ReadAllLines(filePath);
+            string inputCodeFilePath = @"C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\inputCode.txt";
+            string FIPPath = @"C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\FIP.txt";
+            string TSPath = @"C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\TS.txt";
+            string[] code = File.ReadAllLines(inputCodeFilePath);
             
             AnalizorLexical analizorLexical = new();
             try
@@ -25,10 +27,20 @@
                     if (nodes[i] != null)
                         Console.WriteLine(i + " " + nodes[i]);
 
-            } catch (ArgumentOutOfRangeException e)
+                WriteFIPToFile(FIPPath, FIP);
+                File.WriteAllText(TSPath, TS.ToString());
+            }
+            catch (ArgumentOutOfRangeException e)
             {
                 Console.WriteLine(e.Message);
             }
+        }
+
+        public static void WriteFIPToFile(string filePath, List<ItemFIP> FIP)
+        {
+            File.WriteAllText(filePath, "");
+            foreach (ItemFIP item in FIP)
+                File.AppendAllText(filePath, item.ToString() + Environment.NewLine);
         }
     }
 }

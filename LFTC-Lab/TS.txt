@@ -1,0 +1,14 @@
+0 a
+1 2
+2 b
+3 "a"
+4 3
+6 c
+7 "\n"
+8 "you wrote a"
+14 Point
+17 "you wrote "
+18 0
+30 x
+38 1
+62 y

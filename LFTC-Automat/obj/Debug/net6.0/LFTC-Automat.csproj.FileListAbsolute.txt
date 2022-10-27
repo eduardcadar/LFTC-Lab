@@ -1,0 +1,15 @@
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Automat\bin\Debug\net6.0\LFTC-Automat.exe
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Automat\bin\Debug\net6.0\LFTC-Automat.deps.json
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Automat\bin\Debug\net6.0\LFTC-Automat.runtimeconfig.json
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Automat\bin\Debug\net6.0\LFTC-Automat.dll
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Automat\bin\Debug\net6.0\LFTC-Automat.pdb
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Automat\obj\Debug\net6.0\LFTC-Automat.csproj.AssemblyReference.cache
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Automat\obj\Debug\net6.0\LFTC-Automat.GeneratedMSBuildEditorConfig.editorconfig
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Automat\obj\Debug\net6.0\LFTC-Automat.AssemblyInfoInputs.cache
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Automat\obj\Debug\net6.0\LFTC-Automat.AssemblyInfo.cs
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Automat\obj\Debug\net6.0\LFTC-Automat.csproj.CoreCompileInputs.cache
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Automat\obj\Debug\net6.0\LFTC-Automat.dll
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Automat\obj\Debug\net6.0\refint\LFTC-Automat.dll
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Automat\obj\Debug\net6.0\LFTC-Automat.pdb
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Automat\obj\Debug\net6.0\LFTC-Automat.genruntimeconfig.cache
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Automat\obj\Debug\net6.0\ref\LFTC-Automat.dll

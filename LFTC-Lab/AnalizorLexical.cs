@@ -1,18 +1,17 @@
-﻿using System.Text.RegularExpressions;
-using System.Text;
+﻿using System.Text;
 
 namespace LFTC_Lab
 {
     public class AnalizorLexical
     {
-        public List<string> LexicalAtoms = new()
+        public readonly List<string> LexicalAtoms = new()
         {
             "ID", "CONST", "double", "string", "struct", "Console.WriteLine", "Console.ReadLine",
             "+", "-", "*", "/", "=", "<", ">", "<=", ">=", "==", "!=", "true", "false", "||", "&&",
             "if", "while", ";", ",", "(", ")", "{", "}"
         };
 
-        private List<AtomType> Symbols = new()
+        private readonly List<AtomType> Symbols = new()
         {
             AtomType.CONST, AtomType.ID
         };
@@ -22,11 +21,11 @@ namespace LFTC_Lab
             List<Atom> atoms = new();
             StringBuilder sb = new();
             bool inQuote = false;
-            int lineNumber = 0, column = 0;
+            int lineNumber = 0;
 
             foreach (string line in code)
             {
-                column = 0;
+                int column = 0;
                 foreach (char c in line)
                 {
                     // daca nu e delimitator (toti delimitatorii sunt formati dintr-un singur caracter)
@@ -90,6 +89,16 @@ namespace LFTC_Lab
                         }
                     }
                 }
+                if (sb.Length > 0)
+                {
+                    var atomText = sb.ToString();
+                    var atom = new Atom(atomText,
+                        IdentifyAtomType(atomText, lineNumber, column), lineNumber, column);
+                    if (atom.AtomType.Equals(AtomType.ID))
+                        CheckIDLength(atomText, lineNumber, column);
+                    atoms.Add(atom);
+                    sb.Clear();
+                }
                 lineNumber++;
             }
             if (sb.Length > 0)
@@ -132,7 +141,7 @@ namespace LFTC_Lab
             return items;
         }
 
-        public AtomType IdentifyAtomType(string atomText, int line, int column)
+        private AtomType IdentifyAtomType(string atomText, int line, int column)
         {
             if (atomText.IsDelimiter()) return AtomType.DELIMITER;
             if (atomText.IsKeyWord()) return AtomType.KEYWORD;
