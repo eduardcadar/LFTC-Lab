@@ -15,8 +15,8 @@
                 try
                 {
                     //automatDescription = File.ReadAllLines(FilePathTable);
-                    automatDescription = File.ReadAllLines(FilePathList);
-                    //automatDescription = File.ReadAllLines(IntCppFilePathList);
+                    //automatDescription = File.ReadAllLines(FilePathList);
+                    automatDescription = File.ReadAllLines(IntCppFilePathList);
                 }
                 catch (FileNotFoundException ex)
                 {
@@ -34,20 +34,31 @@
                 else
                     automat.InitializeWithListOfTransitions(automatDescription);
                 Console.WriteLine(automat);
-
-                Console.Write("Sequence: ");
-                string? sequence = Console.ReadLine();
-                if (sequence == null)
-                    throw new ArgumentException("Invalid sequence");
-                bool valid = automat.Process(sequence);
-                if (valid)
-                    Console.WriteLine("Valid sequence");
-                else
+                while (true)
                 {
-                    Console.WriteLine("Invalid sequence");
-                    string longestValidPrefix = automat.LongestValidPrefix(sequence);
-                    if (longestValidPrefix.Length > 0)
-                        Console.WriteLine("Longest valid prefix is: " + longestValidPrefix);
+                    Console.Write("Sequence: ");
+                    string? sequence = Console.ReadLine();
+                    try
+                    {
+                        if (sequence == null)
+                            throw new ArgumentException("Invalid sequence");
+                        bool valid = automat.Process(sequence);
+                        if (valid)
+                            Console.WriteLine("Valid sequence");
+                        else
+                        {
+                            Console.WriteLine("Invalid sequence");
+                            string longestValidPrefix = automat.LongestValidPrefix(sequence);
+                            if (longestValidPrefix.Length > 0)
+                                Console.WriteLine("Longest valid prefix is: " + longestValidPrefix);
+                        }
+                    } catch (ArgumentException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    } finally
+                    {
+                        Console.WriteLine();
+                    }
                 }
             } catch (ArgumentException e)
             {

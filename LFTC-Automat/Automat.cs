@@ -82,6 +82,8 @@ namespace LFTC_Automat
             {
                 if (!Alphabet.Contains(c.ToString()))
                     throw new ArgumentException($"{c} not in alphabet");
+                if (!Transitions[state].ContainsKey(c.ToString()))
+                    return false;
                 state = Transitions[state][c.ToString()];
             }
             return IsFinish[state];
@@ -91,10 +93,10 @@ namespace LFTC_Automat
         {
             string state = InitialState;
             int length = -1;
-            if (IsFinish[state])
-                length = 0;
             for (int i = 0; i < sequence.Length; i++)
             {
+                if (!Transitions[state].ContainsKey(sequence[i].ToString()))
+                    break;
                 state = Transitions[state][sequence[i].ToString()];
                 if (IsFinish[state])
                     length = i + 1;
