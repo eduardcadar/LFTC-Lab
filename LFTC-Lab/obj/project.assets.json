@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "LFTC-Automat/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/LFTC-Automat.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LFTC-Automat.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "LFTC-Automat/1.0.0": {
+      "type": "project",
+      "path": "../LFTC-Automat/LFTC-Automat.csproj",
+      "msbuildProject": "../LFTC-Automat/LFTC-Automat.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "LFTC-Automat >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\edyed\\.nuget\\packages\\": {}
@@ -33,7 +52,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\facultate\\Semestrul 5\\LFTC\\LFTC-Lab\\LFTC-Automat\\LFTC-Automat.csproj": {
+              "projectPath": "C:\\facultate\\Semestrul 5\\LFTC\\LFTC-Lab\\LFTC-Automat\\LFTC-Automat.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

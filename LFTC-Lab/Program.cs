@@ -4,9 +4,9 @@
     {
         public static void Main()
         {
-            string inputCodeFilePath = @"C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\inputCode.txt";
-            string FIPPath = @"C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\FIP.txt";
-            string TSPath = @"C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\TS.txt";
+            string inputCodeFilePath = @"C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\textFiles\inputCode.txt";
+            string FIPPath = @"C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\textFiles\FIP.txt";
+            string TSPath = @"C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\textFiles\TS.txt";
             string[] code = File.ReadAllLines(inputCodeFilePath);
             
             AnalizorLexical analizorLexical = new();

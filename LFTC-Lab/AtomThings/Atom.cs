@@ -1,4 +1,4 @@
-﻿namespace LFTC_Lab
+﻿namespace LFTC_Lab.AtomThings
 {
     public class Atom
     {

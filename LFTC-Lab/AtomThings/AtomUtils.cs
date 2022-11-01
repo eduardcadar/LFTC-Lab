@@ -1,9 +1,13 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace LFTC_Lab
+namespace LFTC_Lab.AtomThings
 {
     public static class AtomUtils
     {
+        public readonly static string AutomatNumberFilePath = @"C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\textFiles\automatConstNumber.txt";
+        public readonly static string AutomatIDFilePath = @"C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\textFiles\automatID.txt";
+        public readonly static Automate Automate = new(AutomatNumberFilePath, AutomatIDFilePath);
+
         public static List<char> Delimiters = new()
         {
             ';', ' ', '"', '{', '}', '(', ')', ','
@@ -48,7 +52,8 @@ namespace LFTC_Lab
 
         public static bool IsID(this string text)
         {
-            return Regex.IsMatch(text, @"^[a-zA-Z]+$");
+            return Automate.AutomatID.Process(text);
+            //return Regex.IsMatch(text, @"^[a-zA-Z]+$");
         }
 
         public static bool IsConst(this string text)
@@ -58,7 +63,8 @@ namespace LFTC_Lab
 
         public static bool IsConstNumber(this string text)
         {
-            return Regex.IsMatch(text, @"^[+-]?(0|([1-9][0-9]*))(\.[0-9]+)?$");
+            return Automate.AutomatConstNumber.Process(text);
+            //return Regex.IsMatch(text, @"^[+-]?(([0-9]+))(\.[0-9]+)?$");
         }
 
         public static bool IsConstText(this string text)

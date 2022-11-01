@@ -13,3 +13,9 @@ C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\obj\Debug\net6.0\refint\LFTC-Lab
 C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\obj\Debug\net6.0\LFTC-Lab.pdb
 C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\obj\Debug\net6.0\LFTC-Lab.genruntimeconfig.cache
 C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\obj\Debug\net6.0\ref\LFTC-Lab.dll
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\bin\Debug\net6.0\LFTC-Automat.deps.json
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\bin\Debug\net6.0\LFTC-Automat.runtimeconfig.json
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\bin\Debug\net6.0\LFTC-Automat.exe
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\bin\Debug\net6.0\LFTC-Automat.dll
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\bin\Debug\net6.0\LFTC-Automat.pdb
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\obj\Debug\net6.0\LFTC-Lab.csproj.CopyComplete

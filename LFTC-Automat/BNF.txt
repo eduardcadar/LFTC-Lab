@@ -1,0 +1,11 @@
+﻿<automat> -> <linie_stari> '\n' <lista_tranzitii>
+
+<linie_stari> -> <stare_initiala> <lista_stari_finale>
+<lista_stari_finale> -> <stare> | <stare> <lista_stari_finale>
+
+<lista_tranzitii> -> <tranzitie> | <tranzitie> '\n' <lista_tranzitii>
+<tranzitie> -> <stare> <simbol_alfabet> <stare>
+
+<stare> -> <CONST>
+<simbol_alfabet> -> <CONST>
+<CONST> -> [a-zA-Z0-9]+

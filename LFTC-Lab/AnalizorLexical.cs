@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using LFTC_Lab.AtomThings;
 
 namespace LFTC_Lab
 {
@@ -107,7 +108,7 @@ namespace LFTC_Lab
             return atoms;
         }
 
-        private void CheckIDLength(string id, int line, int column)
+        private static void CheckIDLength(string id, int line, int column)
         {
             if (id.Length > 250)
                 throw new ArgumentOutOfRangeException(
@@ -141,7 +142,7 @@ namespace LFTC_Lab
             return items;
         }
 
-        private AtomType IdentifyAtomType(string atomText, int line, int column)
+        private static AtomType IdentifyAtomType(string atomText, int line, int column)
         {
             if (atomText.IsDelimiter()) return AtomType.DELIMITER;
             if (atomText.IsKeyWord()) return AtomType.KEYWORD;

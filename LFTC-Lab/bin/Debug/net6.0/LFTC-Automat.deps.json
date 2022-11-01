@@ -6,14 +6,6 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "LFTC-Lab/1.0.0": {
-        "dependencies": {
-          "LFTC-Automat": "1.0.0"
-        },
-        "runtime": {
-          "LFTC-Lab.dll": {}
-        }
-      },
       "LFTC-Automat/1.0.0": {
         "runtime": {
           "LFTC-Automat.dll": {}
@@ -22,11 +14,6 @@
     }
   },
   "libraries": {
-    "LFTC-Lab/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "LFTC-Automat/1.0.0": {
       "type": "project",
       "serviceable": false,

@@ -81,7 +81,8 @@ namespace LFTC_Automat
             foreach (char c in sequence)
             {
                 if (!Alphabet.Contains(c.ToString()))
-                    throw new ArgumentException($"{c} not in alphabet");
+                    return false;
+                    //throw new ArgumentException($"{c} not in alphabet");
                 if (!Transitions[state].ContainsKey(c.ToString()))
                     return false;
                 state = Transitions[state][c.ToString()];

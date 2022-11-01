@@ -3,7 +3,7 @@ string c;
 struct Point {
     double x, y;
 }
-a = 2 + 3;
+a = 2 + 3.21;
 Console.ReadLine(c);
 if (c == "a") {
     Console.WriteLine("you wrote a");
