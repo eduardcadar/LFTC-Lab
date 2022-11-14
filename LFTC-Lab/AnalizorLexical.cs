@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Data.Common;
+using System.Text;
 using LFTC_Lab.AtomThings;
 
 namespace LFTC_Lab
@@ -26,12 +27,21 @@ namespace LFTC_Lab
 
             foreach (string line in code)
             {
-                int column = 0;
+                int column = 0, operatorParts = 0;
                 foreach (char c in line)
                 {
                     // daca nu e delimitator (toti delimitatorii sunt formati dintr-un singur caracter)
-                    if (!c.IsDelimiter())
+                    if (!c.IsDelimiter() && !c.IsOperatorPart())
+                    {
+                        if (operatorParts > 0)
+                        {
+                            atoms.Add(SolveAtom(sb, lineNumber, column));
+                            column += sb.Length;
+                            sb.Clear();
+                            operatorParts = 0;
+                        }
                         sb.Append(c);
+                    }
                     else
                     {
                         if (inQuote)
@@ -40,12 +50,7 @@ namespace LFTC_Lab
                             if (c.IsQuoteMark())
                             {
                                 inQuote = false;
-                                var atomText = sb.ToString();
-                                var atom = new Atom(atomText,
-                                    IdentifyAtomType(atomText, lineNumber, column), lineNumber, column);
-                                if (atom.AtomType.Equals(AtomType.ID))
-                                    CheckIDLength(atomText, lineNumber, column);
-                                atoms.Add(atom);
+                                atoms.Add(SolveAtom(sb, lineNumber, column));
                                 column += sb.Length;
                                 sb.Clear();
                             }
@@ -54,37 +59,47 @@ namespace LFTC_Lab
                         {
                             if (c.IsQuoteMark())
                             {
+                                if (operatorParts > 0)
+                                {
+                                    atoms.Add(SolveAtom(sb, lineNumber, column));
+                                    column += sb.Length;
+                                    sb.Clear();
+                                    operatorParts = 0;
+                                }
                                 inQuote = true;
                                 sb.Append(c);
                             }
                             else
                             {
-                                if (sb.Length > 0)
+                                if (c.IsOperatorPart())
                                 {
-                                    var atomText = sb.ToString();
-                                    var atom = new Atom(atomText,
-                                        IdentifyAtomType(atomText, lineNumber, column), lineNumber, column);
-                                    if (atom.AtomType.Equals(AtomType.ID))
-                                        CheckIDLength(atomText, lineNumber, column);
-                                    atoms.Add(atom);
-                                    column += sb.Length;
-                                    sb.Clear();
-                                }
-                                if (c.IsSpace())
-                                {
-                                    column++;
+                                    if (operatorParts == 0 && sb.Length > 0)
+                                    {
+                                        atoms.Add(SolveAtom(sb, lineNumber, column));
+                                        column += sb.Length;
+                                        sb.Clear();
+                                    }
+                                    sb.Append(c);
+                                    operatorParts++;
                                 }
                                 else
                                 {
-                                    sb.Append(c);
-                                    var atomText = sb.ToString();
-                                    var atom = new Atom(atomText,
-                                        IdentifyAtomType(atomText, lineNumber, column), lineNumber, column);
-                                    if (atom.AtomType.Equals(AtomType.ID))
-                                        CheckIDLength(atomText, lineNumber, column);
-                                    atoms.Add(atom);
-                                    column += sb.Length;
-                                    sb.Clear();
+                                    operatorParts = 0;
+                                    if (sb.Length > 0)
+                                    {
+                                        atoms.Add(SolveAtom(sb, lineNumber, column));
+                                        column += sb.Length;
+                                        sb.Clear();
+                                    }
+                                    if (c.IsSpace())
+                                        column++;
+                                    else
+                                    {
+                                        sb.Append(c);
+                                        atoms.Add(SolveAtom(sb, lineNumber, column));
+                                        column += sb.Length;
+                                        sb.Clear();
+                                    }
                                 }
                             }
                         }
@@ -92,12 +107,7 @@ namespace LFTC_Lab
                 }
                 if (sb.Length > 0)
                 {
-                    var atomText = sb.ToString();
-                    var atom = new Atom(atomText,
-                        IdentifyAtomType(atomText, lineNumber, column), lineNumber, column);
-                    if (atom.AtomType.Equals(AtomType.ID))
-                        CheckIDLength(atomText, lineNumber, column);
-                    atoms.Add(atom);
+                    atoms.Add(SolveAtom(sb, lineNumber, column));
                     sb.Clear();
                 }
                 lineNumber++;
@@ -106,6 +116,16 @@ namespace LFTC_Lab
                 atoms.Add(new Atom(sb.ToString()));
 
             return atoms;
+        }
+
+        private static Atom SolveAtom(StringBuilder sb, int lineNumber, int column)
+        {
+            var atomText = sb.ToString();
+            var atom = new Atom(atomText,
+                IdentifyAtomType(atomText, lineNumber, column), lineNumber, column);
+            if (atom.AtomType.Equals(AtomType.ID))
+                CheckIDLength(atomText, lineNumber, column);
+            return atom;
         }
 
         private static void CheckIDLength(string id, int line, int column)

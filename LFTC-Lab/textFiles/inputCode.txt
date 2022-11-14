@@ -1,17 +1,16 @@
-﻿double a, b;
+﻿double a,b=00.2;
 string c;
 struct Point {
     double x, y;
 }
-a = 2 + 3.21;
+a =2+3.21;
 Console.ReadLine(c);
-if (c == "a") {
+if (c=="a") {
     Console.WriteLine("you wrote a");
 }
 else {
-    Console.WriteLine("you wrote " + c);
+    Console.WriteLine("you wrote "+c);
 }
-while (a > 0) {
+while(a>0){
     Console.WriteLine(a + "\n");
-    a = a - 1;
-}
+    a = a - 1;}
