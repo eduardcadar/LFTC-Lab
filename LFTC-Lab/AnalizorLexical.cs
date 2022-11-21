@@ -8,14 +8,15 @@ namespace LFTC_Lab
     {
         public readonly List<string> LexicalAtoms = new()
         {
-            "ID", "CONST", "double", "string", "struct", "Console.WriteLine", "Console.ReadLine",
+            "ID", "CONSTINT", "CONSTREAL", "CONSTTEXT", "int", "double", "string", "struct",
+            "Console.WriteLine", "Console.ReadLine",
             "+", "-", "*", "/", "=", "<", ">", "<=", ">=", "==", "!=", "true", "false", "||", "&&",
-            "if", "while", ";", ",", "(", ")", "{", "}"
+            "if", "else", "while", ";", ",", "(", ")", "{", "}"
         };
 
         private readonly List<AtomType> Symbols = new()
         {
-            AtomType.CONST, AtomType.ID
+            AtomType.CONSTINT, AtomType.CONSTREAL, AtomType.CONSTTEXT, AtomType.ID
         };
 
         public List<Atom> SeparateAtoms(string[] code)
@@ -167,7 +168,9 @@ namespace LFTC_Lab
             if (atomText.IsDelimiter()) return AtomType.DELIMITER;
             if (atomText.IsKeyWord()) return AtomType.KEYWORD;
             if (atomText.IsID()) return AtomType.ID;
-            if (atomText.IsConst()) return AtomType.CONST;
+            if (atomText.IsIntNumber()) return AtomType.CONSTINT;
+            if (atomText.IsRealNumber()) return AtomType.CONSTREAL;
+            if (atomText.IsConstText()) return AtomType.CONSTTEXT;
             if (atomText.IsOperator()) return AtomType.OPERATOR;
 
             throw new ArgumentOutOfRangeException(

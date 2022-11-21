@@ -2,6 +2,6 @@
 {
     public enum AtomType
     {
-        KEYWORD, DELIMITER, CONST, ID, OPERATOR
+        KEYWORD, DELIMITER, CONSTINT, CONSTREAL, CONSTTEXT, ID, OPERATOR
     }
 }

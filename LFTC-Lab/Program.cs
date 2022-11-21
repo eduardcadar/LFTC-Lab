@@ -4,7 +4,7 @@
     {
         public static void Main()
         {
-            string inputCodeFilePath = @"C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\textFiles\inputCode.txt";
+            string inputCodeFilePath = @"C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\textFiles\inputCode2.txt";
             string FIPPath = @"C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\textFiles\FIP.txt";
             string TSPath = @"C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-Lab\textFiles\TS.txt";
             string[] code = File.ReadAllLines(inputCodeFilePath);

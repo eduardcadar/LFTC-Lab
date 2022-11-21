@@ -39,7 +39,7 @@ namespace LFTC_Lab
                 else
                     i = i * 2 + 2;
             }
-            if (i > Size || Nodes[i] == null)
+            if (i >= Size || Nodes[i] == null)
                 return -1;
             return i;
         }

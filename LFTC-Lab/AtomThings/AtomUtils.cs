@@ -24,7 +24,7 @@ namespace LFTC_Lab.AtomThings
 
         public static readonly List<string> Keywords = new()
         {
-            "double", "string", "struct", "if", "else", "while",
+            "int", "double", "string", "struct", "if", "else", "while",
             "Console.ReadLine", "Console.WriteLine"
         };
 
