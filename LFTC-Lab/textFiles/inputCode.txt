@@ -1,6 +1,5 @@
-int f=0x_1______0;
-int 12_23;
-double a=0_0.2_1_____1;
+int ff = 0x_1______0;double z;
+z=1.01e-10f;
 string c;
 struct Point {
     double x, y;
@@ -12,6 +11,9 @@ if (c=="a") {
 }
 else {
     Console.WriteLine("you wrote "+c);
+}
+if (true) {
+	a = 5;
 }
 while(a>=0){
     Console.WriteLine(a + "\n");

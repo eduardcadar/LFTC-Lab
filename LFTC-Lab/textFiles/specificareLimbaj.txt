@@ -37,14 +37,13 @@ while (a > 0) {
 
 <accesare_camp_struct> -> <ID>'.'<ID>
 
-<atribuire> -> <ID> = <expr>;
-<atribuire> -> <ID>'.'<ID> = <expr>;
+<atribuire> -> <ID> = <expr>; | <ID>'.'<ID> = <expr>;
 <expr> -> <operand> | <operand> <operatie> <expr>
 <operand> -> <ID> | <CONST>
 <operatie> -> '+' | '-' | '*' | '/'
 
-<ID> -> ^[a-zA-Z]+$
-<NUME_STRUCT> -> ^[a-zA-Z]+$
+<ID> -> ^[a-z][a-zA-Z]*$
+<NUME_STRUCT> -> ^[A-Z][a-zA-Z]*$
 <CONST> -> ^[+-]?([0-9]*)(\.[0-9]+)?$
 <CONST> -> ^"[^"]*"$
 
@@ -85,31 +84,26 @@ entry {
 
 2.3 Suma a n numere citite de la tastatura
 
-entry {
-    double a, n, s;
-    Console.ReadLine(n);
-    s = 0;
-    while (n > 0) {
-        Console.ReadLine(a);
-        s = s + a;
-        n = n - 1;
-    }
+double a, n, s;
+Console.ReadLine(n);
+s = 0;
+while (n > 0) {
+	Console.ReadLine(a);
+	s = s + a;
+	n = n - 1;
 }
+
 
 3. Program cu erori care sunt erori si in C#
 
-entry {
-    double a;
-    Console.ReadLine(a)          --> lipseste ';' dupa instructiune
-    while a > 0 {     --> conditia nu este intre paranteze
-        a = a - 1;
-    }
+double a;
+Console.ReadLine(a)          --> lipseste ';' dupa instructiune
+while a > 0 {     --> conditia nu este intre paranteze
+	a = a - 1;
 }
 
 Program cu erori care nu sunt erori in C#
 
-entry {
-    double a = 2;     --> nu se poate initializa la declarare
-    Console.WriteLine(a);            
-    a--;              --> nu se poate decrementa in felul acesta
-}
+double a = 2;     --> nu se poate initializa la declarare
+Console.WriteLine(a);            
+a--;              --> nu se poate decrementa in felul acesta

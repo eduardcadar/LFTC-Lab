@@ -1,16 +1,18 @@
 %{ 				
-#include <math.h> 			/* -> atof()  */
+#include <math.h>
 #include <string.h>
 #include <stdlib.h>
+#include "parser.tab.c"
 
-const int noLexicalAtoms = 34;
+const int noLexicalAtoms = 37;
 const char* lexicalAtoms[] = {
     "ID", "CONSTINT", "CONSTREAL", "CONSTTEXT",
     "int", "double", "string", "struct",
     "Console.WriteLine", "Console.ReadLine", "+", "-",
     "*", "/", "=", "<", ">", "<=", ">=", "==", "!=",
     "true", "false", "||", "&&", "if", "else", "while",
-    ";", ",", "(", ")", "{", "}"
+    ";", ",", "(", ")", "{", "}",
+    "repeta", "panacand", "sfrepeta"
 };
 const int noSymbolTypes = 4;
 const char* FIPFilePath = "./FIP.txt";
@@ -105,15 +107,17 @@ void solveAtom(int typeID, char* atomText) {
 STRING \"[^\"]*\"
 KEYWORD int|double|string|struct|if|else|while|Console.ReadLine|Console.WriteLine
 WRONGID [a-zA-Z][^; \"{}(),+*/<>=!|&\n-]*[^a-zA-Z; \"{}(),+*/<>=!|&\n-][^; \"{}(),+*/<>=!|&\n-]*
-ID [a-zA-Z][a-zA-Z]*
+ID [a-z][a-zA-Z]*
+NUME_STRUCT [A-Z][a-zA-Z]*
 DIGIT [0-9]
 DIGIT_ [0-9_]
 BINARY_DIGIT [01]
 BINARY_DIGIT_ [01_]
 HEXA_DIGIT [0-9a-fA-F]
 HEXA_DIGIT_ [0-9a-fA-F_]
+NUMBER ([0-9][0-9_]*[0-9])|[0-9]
 DELIMITER ";"|"{"|"}"|"("|")"|","
-OPERATOR "+"|"-"|"*"|"/"|"<="|"<"|">="|">"|"=="|"!="|"="|"!"|"||"|"&&"
+OPERATOR_ONE_CHAR "+"|"-"|"*"|"/"|"<"|">"|"="|"!"
 NEWLINE [\n]
 WHITESPACE [ \t]+
 
@@ -121,18 +125,63 @@ WHITESPACE [ \t]+
 
 {STRING} {
     // CONSTTEXT
-    int typeID = atomIndex("CONSTTEXT");
-    solveAtom(typeID, yytext);
-    printf("string: %s atomID: %d\n", yytext, typeID);
-    columnNo += strlen(yytext);
+    // int typeID = atomIndex("CONSTTEXT");
+    // solveAtom(typeID, yytext);
+    // printf("string: %s atomID: %d\n", yytext, typeID);
+    // columnNo += strlen(yytext);
+    strcpy(yylval.text, yytext);
+    return CONST_TEXT;
+}
+
+int {
+    return INT;
+}
+
+double {
+    return DOUBLE;
+}
+
+string {
+    return STRING;
+}
+
+struct {
+    return STRUCT;
+}
+
+if {
+    return IF;
+}
+
+else {
+    return ELSE;
+}
+
+while {
+    return WHILE;
+}
+
+Console.ReadLine {
+    return CONSREADLINE;
+}
+
+Console.WriteLine {
+    return CONSWRITELINE;
 }
 
 {KEYWORD} {
-    // keyword
-    int typeID = atomIndex(yytext);
-    solveAtom(typeID, yytext);
-    printf("keyword: %s atomID: %d\n", yytext, typeID);
-    columnNo += strlen(yytext);
+    // int typeID = atomIndex(yytext);
+    // solveAtom(typeID, yytext);
+    // printf("keyword: %s atomID: %d\n", yytext, typeID);
+    // columnNo += strlen(yytext);
+}
+
+true {
+    return VAL_TRUE;
+}
+
+false {
+    return VAL_FALSE;
 }
 
 {WRONGID} {
@@ -140,57 +189,92 @@ WHITESPACE [ \t]+
     exit(0);
 }
 
-({DIGIT}+\.{DIGIT}{DIGIT_}*{DIGIT})|({DIGIT}{DIGIT_}*{DIGIT}\.{DIGIT}{DIGIT_}*{DIGIT})|({DIGIT}+\.{DIGIT}*) {
+({DIGIT}+\.{DIGIT}{DIGIT_}*{DIGIT}(e[+-]{NUMBER}?)?[fF]?)|({DIGIT}{DIGIT_}*{DIGIT}\.{DIGIT}{DIGIT_}*{DIGIT}(e[+-]{NUMBER}?)?[fF]?)|({DIGIT}+\.{DIGIT}*(e[+-]{NUMBER}?)?[fF]?) {
     // CONSTREAL
-    int typeID = atomIndex("CONSTREAL");
-    solveAtom(typeID, yytext);
-    printf("constreal: %s atomID: %d\n", yytext, typeID);
-    columnNo += strlen(yytext);
+    // int typeID = atomIndex("CONSTREAL");
+    // solveAtom(typeID, yytext);
+    // printf("constreal: %s atomID: %d\n", yytext, typeID);
+    // columnNo += strlen(yytext);
+    char *ptr;
+    yylval.number = strtod(yytext, &ptr);
+    return CONST_NUMBER;
 }
 
 (0b{BINARY_DIGIT_}*{BINARY_DIGIT})|(0x{HEXA_DIGIT_}*{HEXA_DIGIT})|({DIGIT}{DIGIT_}*{DIGIT})|({DIGIT}) {
     // CONSTINT
-    int typeID = atomIndex("CONSTINT");
-    solveAtom(typeID, yytext);
-    printf("constint: %s atomID: %d\n", yytext, typeID);
-    columnNo += strlen(yytext);
+    // int typeID = atomIndex("CONSTINT");
+    // solveAtom(typeID, yytext);
+    // printf("constint: %s atomID: %d\n", yytext, typeID);
+    // columnNo += strlen(yytext);
+    yylval.number = atoi(yytext);
+    return CONST_NUMBER;
 }
 
 {ID} {
-    // ID
-    if (strlen(yytext) > 250) {
-        printf("ID too long on line %d, column %d", yylineno, columnNo);
-        exit(0);
-    }
-    int typeID = atomIndex("ID");
-    solveAtom(typeID, yytext);
-    printf("identifier: %s atomID: %d\n", yytext, typeID);
-    columnNo += strlen(yytext);
+    // if (strlen(yytext) > 250) {
+    //     printf("ID too long on line %d, column %d", yylineno, columnNo);
+    //     exit(0);
+    // }
+    // int typeID = atomIndex("ID");
+    // solveAtom(typeID, yytext);
+    // printf("identifier: %s atomID: %d\n", yytext, typeID);
+    // columnNo += strlen(yytext);
+    strcpy(yylval.text, yytext);
+    return ID;
+}
+
+{NUME_STRUCT} {
+    strcpy(yylval.text, yytext);
+    return NUME_STRUCT;
 }
 
 {DELIMITER} {
-    // delimiter
-    int typeID = atomIndex(yytext);
-    solveAtom(typeID, yytext);
-    printf("delimiter: %s atomID: %d\n", yytext, typeID);
-    columnNo += strlen(yytext);
+    // int typeID = atomIndex(yytext);
+    // solveAtom(typeID, yytext);
+    // printf("delimiter: %s atomID: %d\n", yytext, typeID);
+    // columnNo += strlen(yytext);
+    return yytext[0];
 }
 
-{OPERATOR} {
-    // operator
-    int typeID = atomIndex(yytext);
-    solveAtom(typeID, yytext);
-    printf("operator: %s atomID: %d\n", yytext, typeID);
-    columnNo += strlen(yytext);
+== {
+    return OPERATOR_EQ;
+}
+
+!= {
+    return OPERATOR_NOT_EQ;
+}
+
+"<=" {
+    return OPERATOR_LO_EQ;
+}
+
+>= {
+    return OPERATOR_GR_EQ;
+}
+
+&& {
+    return OPERATOR_AND;
+}
+
+"||" {
+    return OPERATOR_OR;
+}
+
+{OPERATOR_ONE_CHAR} {
+    // int typeID = atomIndex(yytext);
+    // solveAtom(typeID, yytext);
+    // printf("operator: %s atomID: %d\n", yytext, typeID);
+    // columnNo += strlen(yytext);
+    return yytext[0];
 }
 
 {NEWLINE} {
-    columnNo = 0;
+    // columnNo = 0;
+    // return '\n';
 }
 
 {WHITESPACE} {
-    // whitespace
-    columnNo += strlen(yytext);
+    // columnNo += strlen(yytext);
 }
 
 . {
@@ -199,23 +283,22 @@ WHITESPACE [ \t]+
     exit(0);
 }
 
-
 %%
-int main(argc, argv)
-int argc;
-char **argv;
-{
-    ++argv, --argc; /* skip over program name */
-    if (argc > 0) 
-    	yyin = fopen(argv[0], "r");
-    else
-     	yyin = stdin;
-    FILE* file = fopen(FIPFilePath, "w");
-    fclose(file);
-    FILE* file2 = fopen(TSFilePath, "w");
-    fclose(file2);
-    columnNo = 0;
-    vectorInitTS(&TS);
-    yylex();
-    vectorFreeTS(&TS);
-}
+// int main(argc, argv)
+// int argc;
+// char **argv;
+// {
+//     ++argv, --argc; /* skip over program name */
+//     if (argc > 0) 
+//     	yyin = fopen(argv[0], "r");
+//     else
+//      	yyin = stdin;
+//     FILE* file = fopen(FIPFilePath, "w");
+//     fclose(file);
+//     FILE* file2 = fopen(TSFilePath, "w");
+//     fclose(file2);
+//     columnNo = 0;
+//     vectorInitTS(&TS);
+//     yylex();
+//     vectorFreeTS(&TS);
+// }
