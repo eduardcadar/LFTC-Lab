@@ -1,4 +1,8 @@
-int ff = 0x_1______0;double z;
+int ff;
+
+repeta a = a + 1; panacand b=5; a=4; sfrepeta
+
+ff = 0x_1______0;double z;
 z=1.01e-10f;
 string c;
 struct Point {

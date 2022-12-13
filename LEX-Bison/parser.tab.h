@@ -66,7 +66,10 @@ extern int yydebug;
      OPERATOR_LO_EQ = 275,
      OPERATOR_GR_EQ = 276,
      OPERATOR_AND = 277,
-     OPERATOR_OR = 278
+     OPERATOR_OR = 278,
+     REPETA = 279,
+     PANACAND = 280,
+     SFREPETA = 281
    };
 #endif
 
@@ -82,7 +85,7 @@ typedef union YYSTYPE
 
 
 /* Line 2058 of yacc.c  */
-#line 86 "parser.tab.h"
+#line 89 "parser.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

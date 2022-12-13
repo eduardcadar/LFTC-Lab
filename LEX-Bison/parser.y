@@ -36,6 +36,10 @@ void yyerror(char const *s) {
 %token OPERATOR_AND
 %token OPERATOR_OR
 
+%token REPETA
+%token PANACAND
+%token SFREPETA
+
 %%
 
 program : lista_instr { printf("GOOD FILE FORMAT\n"); }
@@ -49,6 +53,10 @@ instr : decl
     | instr_cond
     | instr_cicl
     | instr_io
+    | instr_myrepeta
+;
+
+instr_myrepeta : REPETA instr PANACAND instr SFREPETA
 ;
 
 instr_io : instr_read ';'

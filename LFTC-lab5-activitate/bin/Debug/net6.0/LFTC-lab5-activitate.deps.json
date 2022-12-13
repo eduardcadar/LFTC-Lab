@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "LFTC-lab5-activitate/1.0.0": {
+        "runtime": {
+          "LFTC-lab5-activitate.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "LFTC-lab5-activitate/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

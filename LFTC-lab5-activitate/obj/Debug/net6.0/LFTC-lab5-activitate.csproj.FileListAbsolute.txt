@@ -1,0 +1,15 @@
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-lab5-activitate\bin\Debug\net6.0\LFTC-lab5-activitate.exe
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-lab5-activitate\bin\Debug\net6.0\LFTC-lab5-activitate.deps.json
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-lab5-activitate\bin\Debug\net6.0\LFTC-lab5-activitate.runtimeconfig.json
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-lab5-activitate\bin\Debug\net6.0\LFTC-lab5-activitate.dll
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-lab5-activitate\bin\Debug\net6.0\LFTC-lab5-activitate.pdb
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-lab5-activitate\obj\Debug\net6.0\LFTC-lab5-activitate.csproj.AssemblyReference.cache
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-lab5-activitate\obj\Debug\net6.0\LFTC-lab5-activitate.GeneratedMSBuildEditorConfig.editorconfig
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-lab5-activitate\obj\Debug\net6.0\LFTC-lab5-activitate.AssemblyInfoInputs.cache
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-lab5-activitate\obj\Debug\net6.0\LFTC-lab5-activitate.AssemblyInfo.cs
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-lab5-activitate\obj\Debug\net6.0\LFTC-lab5-activitate.csproj.CoreCompileInputs.cache
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-lab5-activitate\obj\Debug\net6.0\LFTC-lab5-activitate.dll
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-lab5-activitate\obj\Debug\net6.0\refint\LFTC-lab5-activitate.dll
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-lab5-activitate\obj\Debug\net6.0\LFTC-lab5-activitate.pdb
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-lab5-activitate\obj\Debug\net6.0\LFTC-lab5-activitate.genruntimeconfig.cache
+C:\facultate\Semestrul 5\LFTC\LFTC-Lab\LFTC-lab5-activitate\obj\Debug\net6.0\ref\LFTC-lab5-activitate.dll

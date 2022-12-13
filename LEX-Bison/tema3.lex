@@ -133,6 +133,18 @@ WHITESPACE [ \t]+
     return CONST_TEXT;
 }
 
+repeta {
+    return REPETA;
+}
+
+panacand {
+    return PANACAND;
+}
+
+sfrepeta {
+    return SFREPETA;
+}
+
 int {
     return INT;
 }
