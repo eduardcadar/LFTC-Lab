@@ -1,1 +1,1 @@
-Start-Process .\exe.exe -RedirectStandardInput ..\LFTC-Lab\textFiles\inputCode.txt -NoNewWindow -Wait
+Start-Process .\exe.exe -RedirectStandardInput inputCode.txt -NoNewWindow -Wait

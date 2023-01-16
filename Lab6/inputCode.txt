@@ -5,3 +5,4 @@ a = 25;
 Console.ReadLine(b);
 c = a + 3*b;
 Console.WriteLine(c);
+Console.WriteLine(a);

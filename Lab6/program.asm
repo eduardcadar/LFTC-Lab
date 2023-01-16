@@ -6,7 +6,8 @@ import printf msvcrt.dll
 import scanf msvcrt.dll 
 
 segment data use32 class=data
-format db 37, 100, 0
+formatRead db 37, 100, 0
+formatWrite db 37, 100, 10, 13, 0
 temp dd 0
 a dw 0
 b dw 0
@@ -19,7 +20,7 @@ start:
 mov ax, 25
 mov [a], ax
 push dword temp
-push dword format
+push dword formatRead
 call [scanf]
 add esp, 4 * 2
 mov eax, [temp]
@@ -36,7 +37,13 @@ mov [c], ax
 mov eax, 0
 mov ax, [c]
 push eax
-push dword format
+push dword formatWrite
+call [printf]
+add esp, 4 * 2
+mov eax, 0
+mov ax, [a]
+push eax
+push dword formatWrite
 call [printf]
 add esp, 4 * 2
 

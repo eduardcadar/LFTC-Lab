@@ -12,7 +12,8 @@ import scanf msvcrt.dll \n\
 
 #define DATA_SEGMENT "\n\
 segment data use32 class=data\n\
-format db 37, 100, 0\n\
+formatRead db 37, 100, 0\n\
+formatWrite db 37, 100, 10, 13, 0\n\
 temp dd 0\n\
 %s\n\
 "
@@ -65,14 +66,14 @@ mov %s, ax\n\
 mov eax, 0\n\
 mov ax, %s\n\
 push eax\n\
-push dword format\n\
+push dword formatWrite\n\
 call [printf]\n\
 add esp, 4 * 2\n\
 "
 
 #define READ_FORMAT "\
 push dword temp\n\
-push dword format\n\
+push dword formatRead\n\
 call [scanf]\n\
 add esp, 4 * 2\n\
 mov eax, [temp]\n\

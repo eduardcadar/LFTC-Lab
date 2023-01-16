@@ -6,39 +6,46 @@
      6                                  import scanf msvcrt.dll 
      7                                  
      8                                  segment data use32 class=data
-     9 00000000 256400                  format db 37, 100, 0
-    10 00000003 00000000                temp dd 0
-    11 00000007 0000                    a dw 0
-    12 00000009 0000                    b dw 0
-    13 0000000B 0000                    c dw 0
-    14 0000000D 0000                    temp1 dw 0
-    15 0000000F 0000                    temp2 dw 0
-    16                                  
-    17                                  segment code use32 class=code
-    18                                  start:
-    19 00000000 66B81900                mov ax, 25
-    20 00000004 66A3[07000000]          mov [a], ax
-    21 0000000A 68[03000000]            push dword temp
-    22 0000000F 68[00000000]            push dword format
-    23 00000014 FF15[00000000]          call [scanf]
-    24 0000001A 83C408                  add esp, 4 * 2
-    25 0000001D A1[03000000]            mov eax, [temp]
-    26 00000022 66A3[09000000]          mov [b], ax
-    27 00000028 66B80300                mov ax, 3
-    28 0000002C 668B15[09000000]        mov dx, [b]
-    29 00000033 66F7EA                  imul dx
-    30 00000036 66A3[0D000000]          mov [temp1], ax
-    31 0000003C 66A1[07000000]          mov ax, [a]
-    32 00000042 660305[0D000000]        add ax, [temp1]
-    33 00000049 66A3[0F000000]          mov [temp2], ax
-    34 0000004F 66A1[0F000000]          mov ax, [temp2]
-    35 00000055 66A3[0B000000]          mov [c], ax
-    36 0000005B B800000000              mov eax, 0
-    37 00000060 66A1[0B000000]          mov ax, [c]
-    38 00000066 50                      push eax
-    39 00000067 68[00000000]            push dword format
-    40 0000006C FF15[00000000]          call [printf]
-    41 00000072 83C408                  add esp, 4 * 2
-    42                                  
-    43 00000075 6A00                    push dword 0
-    44 00000077 FF15[00000000]          call [exit]
+     9 00000000 256400                  formatRead db 37, 100, 0
+    10 00000003 25640A0D00              formatWrite db 37, 100, 10, 13, 0
+    11 00000008 00000000                temp dd 0
+    12 0000000C 0000                    a dw 0
+    13 0000000E 0000                    b dw 0
+    14 00000010 0000                    c dw 0
+    15 00000012 0000                    temp1 dw 0
+    16 00000014 0000                    temp2 dw 0
+    17                                  
+    18                                  segment code use32 class=code
+    19                                  start:
+    20 00000000 66B81900                mov ax, 25
+    21 00000004 66A3[0C000000]          mov [a], ax
+    22 0000000A 68[08000000]            push dword temp
+    23 0000000F 68[00000000]            push dword formatRead
+    24 00000014 FF15[00000000]          call [scanf]
+    25 0000001A 83C408                  add esp, 4 * 2
+    26 0000001D A1[08000000]            mov eax, [temp]
+    27 00000022 66A3[0E000000]          mov [b], ax
+    28 00000028 66B80300                mov ax, 3
+    29 0000002C 668B15[0E000000]        mov dx, [b]
+    30 00000033 66F7EA                  imul dx
+    31 00000036 66A3[12000000]          mov [temp1], ax
+    32 0000003C 66A1[0C000000]          mov ax, [a]
+    33 00000042 660305[12000000]        add ax, [temp1]
+    34 00000049 66A3[14000000]          mov [temp2], ax
+    35 0000004F 66A1[14000000]          mov ax, [temp2]
+    36 00000055 66A3[10000000]          mov [c], ax
+    37 0000005B B800000000              mov eax, 0
+    38 00000060 66A1[10000000]          mov ax, [c]
+    39 00000066 50                      push eax
+    40 00000067 68[03000000]            push dword formatWrite
+    41 0000006C FF15[00000000]          call [printf]
+    42 00000072 83C408                  add esp, 4 * 2
+    43 00000075 B800000000              mov eax, 0
+    44 0000007A 66A1[0C000000]          mov ax, [a]
+    45 00000080 50                      push eax
+    46 00000081 68[03000000]            push dword formatWrite
+    47 00000086 FF15[00000000]          call [printf]
+    48 0000008C 83C408                  add esp, 4 * 2
+    49                                  
+    50 0000008F 6A00                    push dword 0
+    51 00000091 FF15[00000000]          call [exit]
